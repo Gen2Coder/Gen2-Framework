@@ -1,3 +1,4 @@
 <?php
 
-echo "Hello world !!!";
+require_once('../Framework/Autoloader.php');
+Autoloader::register();
