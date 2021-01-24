@@ -3,12 +3,12 @@
 class Autoloader
 {
     private $dirClass;
-    private $namespace;
+    private $nameSpace;
 
-    public function __construct($dirClass, $namespace)
+    public function __construct($dirClass, $nameSpace)
     {
         $this->dirClass = $dirClass;
-        $this->namespace = $namespace;
+        $this->nameSpace = $nameSpace;
     }
 
     public function register()
@@ -17,7 +17,7 @@ class Autoloader
     }
     private function loadClass($class)
     {
-        $fileClass = str_replace($this->namespace,  $this->dirClass, $class) . '.php';
+        $fileClass = str_replace($this->nameSpace,  $this->dirClass, $class) . '.php';
         if (file_exists($fileClass)) {
             require_once $fileClass;
         } else {
