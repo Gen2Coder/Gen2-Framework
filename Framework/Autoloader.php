@@ -2,14 +2,22 @@
 
 class Autoloader
 {
-    static function register()
+    private $dirClass;
+    private $namespace;
+
+    public function __construct($dirClass, $namespace)
+    {
+        $this->dirClass = $dirClass;
+        $this->namespace = $namespace;
+    }
+
+    public function register()
     {
         spl_autoload_register(array(__CLASS__, 'loadClass'));
     }
-    static function loadClass($class)
+    private function loadClass($class)
     {
-        $folderClass = '../Framework/';
-        $fileClass = str_replace('Gen2\\',  $folderClass, $class) . '.php';
+        $fileClass = str_replace($this->namespace,  $this->dirClass, $class) . '.php';
         if (file_exists($fileClass)) {
             require_once $fileClass;
         } else {
